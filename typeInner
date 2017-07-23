@@ -1,0 +1,73 @@
+import javax.swing.JOptionPane;
+
+public class ExamB {
+	
+	public int p=0;
+	
+	
+	
+	public ExamB() {
+		
+		Thread plusThread = new Thread() {
+			public void run() {
+				for(int i=20;i>0;i--) {
+					 if(p==1) {
+						 i=i+5;
+						  p=0;
+					 }
+					 else if( p==2) {
+						 i=i-5;
+						  p=0;
+					 }
+					 else if( p==0) {
+						System.out.println(i);
+						
+						try {
+							Thread.sleep(1000);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+						
+					 }
+					}	
+					System.out.println("fail");
+					System.exit(0);
+			}
+		};//inner class
+		
+		
+		
+		plusThread.start();
+		
+		String[] sentences = new String[] {
+				"Education is a method whereby one acquires a higher grade of prejudices",
+				"It is a bad plan that admits of no modification",
+				"Nothing is as far away as one minute ago"
+				
+		};
+		
+		
+while(true) {
+			
+			int random = (int)(Math.random()*3);
+			String msg = JOptionPane.showInputDialog(sentences[random]);
+			
+			if(msg.equals(sentences[random])) {
+				p=1;
+				System.out.println("success");
+				
+			}
+			else {
+				p=2;
+				System.out.println("fail");
+				}
+			}
+	}
+	
+	public static void main(String[] args) {
+		new ExamB();
+		
+		
+	}
+	
+}
